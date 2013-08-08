@@ -182,6 +182,11 @@ module ActiveMerchant #:nodoc:
         elsif creditcard.kind_of?(String)
           if options[:track_data]
             card[:swipe_data] = options[:track_data]
+          elsif options[:is_token]
+              card = creditcard
+          elsif options[:is_customer_card_id]
+              card = creditcard
+              post[:customer] = options[:customer]
           else
             card[:number] = creditcard
           end
